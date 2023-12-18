@@ -11,6 +11,6 @@ jobs:
         uses: actions/checkout@v4
       - name: run bash script
         run: |
-          bash bash.sh
+          bash github_rest_api.sh
 
     
