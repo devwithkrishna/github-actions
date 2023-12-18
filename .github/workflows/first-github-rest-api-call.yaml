@@ -8,7 +8,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: clone repo
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
       - name: run bash script
         run: |
           bash bash.sh
