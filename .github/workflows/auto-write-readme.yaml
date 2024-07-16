@@ -33,7 +33,7 @@ jobs:
           new_row="| $name_env | $date_env |"
 
           # Insert the new row after the table header and ensure proper formatting
-          updated_readme=$(echo "$readme_content" | sed '/| name | date |/a \\| '"$name_env"' | '"$date_env"' |')
+          awk -v nrow="$new_row" '/^| name | date |/ {print; getline; print; print nrow; next}1' README.md > README.tmp && mv README.tmp README.md
 
           # Overwrite the README.md file with the updated content
           echo "$updated_readme" > README.md
