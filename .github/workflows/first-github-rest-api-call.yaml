@@ -12,5 +12,7 @@ jobs:
       - name: run bash script
         run: |
           bash github_rest_api.sh
+          with:
+            GITHUB_
 
     
