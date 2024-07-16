@@ -1,0 +1,47 @@
+name: Update README with new entry
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set environment variables for testing
+        run: |
+          echo "name_env=TestName" >> $GITHUB_ENV
+          echo "date_env=16-07-2024" >> $GITHUB_ENV
+
+      - name: Extract environment variables and update README
+        run: |
+          # Read the environment variables
+          name_env="${{ env.name_env }}"
+          date_env="${{ env.date_env }}"
+
+          # Read the existing README.md file
+          readme_content=$(cat README.md)
+          
+          # Create the new row to add to the table
+          new_row="| $name_env | $date_env |"
+
+          # Insert the new row after the table header
+          updated_readme=$(echo "$readme_content" | sed '/| name | date |/a '"$new_row"'')
+
+          # Overwrite the README.md file with the updated content
+          echo "$updated_readme" > README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update README with new entry"
+          git push
