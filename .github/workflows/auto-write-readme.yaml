@@ -1,5 +1,6 @@
 name: Update README with new entry
-
+permissions:
+  contents: write
 on:
   push:
     branches:
