@@ -26,14 +26,14 @@ jobs:
           name_env="${{ env.name_env }}"
           date_env="${{ env.date_env }}"
 
-          # Read the existing README.md file
-          readme_content=$(cat README.md)
-          
           # Create the new row to add to the table
           new_row="| $name_env | $date_env |"
 
-          # Insert the new row after the table header and ensure proper formatting
-          awk -v nrow="$new_row" '/^| name | date |/ {print; getline; print; print nrow; next}1' README.md > README.tmp && mv README.tmp README.md
+          # Read the existing README.md file
+          readme_content=$(cat README.md)
+          
+          # Ensure we add the new row after the table header and separator
+          updated_readme=$(echo "$readme_content" | sed '/| name | date |/a \\|------|------| \n'"$new_row"'')
 
           # Overwrite the README.md file with the updated content
           echo "$updated_readme" > README.md
