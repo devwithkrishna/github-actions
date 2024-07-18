@@ -1,0 +1,30 @@
+name: Docker Version
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t my-docker-image .
+
+    #   - name: Run Docker container
+    #     run: |
+    #       docker run --rm my-docker-image cat /docker_version.txt > docker_version.txt
+
+      - name: Set Docker version as environment variable
+        run: echo "DOCKER_VERSION=$(cat docker_version.txt)" >> $GITHUB_ENV
+
+      - name: Output Docker version
+        env:
+           DOCKER_VERSION: ${{ env.DOCKER_VERSION }}
+        run: |
+            echo "Docker version: $DOCKER_VERSION"
+        
