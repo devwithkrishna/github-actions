@@ -19,7 +19,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Get Docker version and set as environment variable
-RUN docker --version | awk '{print $3}' | sed 's/,//' > /docker_version.txt
+RUN docker --version | awk '{print $3}' | sed 's/,//' > /tmp/docker_version.txt
 
 # Default command to keep the container running
 CMD ["tail", "-f", "/dev/null"]

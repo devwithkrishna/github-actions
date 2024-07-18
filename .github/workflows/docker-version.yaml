@@ -15,9 +15,9 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-docker-image .
 
-    #   - name: Run Docker container
-    #     run: |
-    #       docker run --rm my-docker-image cat /docker_version.txt > docker_version.txt
+      - name: Run Docker container
+        run: |
+          docker run -d --rm my-docker-image cat /docker_version.txt > docker_version.txt
 
       - name: Set Docker version as environment variable
         run: echo "DOCKER_VERSION=$(cat docker_version.txt)" >> $GITHUB_ENV
