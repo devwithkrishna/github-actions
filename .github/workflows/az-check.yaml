@@ -1,7 +1,7 @@
 name: Azure Auth and az account show
 
 on:
-  push:
+#  push:
   workflow_dispatch:
 
 jobs:
@@ -12,14 +12,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Azure CLI
-      uses: azure/CLI@v1
-
-    - name: Login via Azure CLI
-      run: |
-        az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_CLIENT_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
-        az account set --subscription ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        az account show -o json
+    - name: Azure CLI script
+      uses: azure/cli@v2
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_CLIENT_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
+          az account set --subscription ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          az account show -o json
 
     - name: Completed
       run: echo 'completed'
