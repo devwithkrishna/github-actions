@@ -2,7 +2,7 @@ name: Azure Auth and az account show
 
 on:
   push:
-  workflo_dispatch:
+  workflow_dispatch:
 
 jobs:
   azure-auth:
