@@ -1,11 +1,12 @@
 name: Update README with directory tree
-permissions:
-  contents: write 
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write  # Allows the workflow to push changes to the repository
 
 jobs:
   update-readme:
@@ -23,11 +24,12 @@ jobs:
 
     - name: Update README.md
       run: |
+        TREE_CONTENT=$(cat tree.txt)
         sed -i '/<!-- BEGIN TREE -->/,/<!-- END TREE -->/c\
-        <!-- BEGIN TREE -->\n\
-        ```\n\
-        $(cat tree.txt)\n\
-        ```\n\
+        <!-- BEGIN TREE -->\
+        ```\
+        '"$TREE_CONTENT"'\
+        ```\
         <!-- END TREE -->' README.md
 
     - name: Commit and push changes
@@ -37,6 +39,4 @@ jobs:
         git add README.md
         git commit -m "Update README with latest directory tree"
         git push
-     
- 
-        
+      
