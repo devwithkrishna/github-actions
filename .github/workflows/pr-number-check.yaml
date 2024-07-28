@@ -11,7 +11,14 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install dependencies (optional)
       run: pip install requests python-dotenv # Install required libraries (if not pre-installed)
-
+    - name: Save PR number
+      env:
+       PR_NUMBER: ${{ github.event.number }}
+       run: |
+          mkdir -p ./pr
+          echo $PR_NUMBER 
+          echo ${{ github.event.number }}
+          
     - name: Run Python script
       #   env:
       # - name: Load environment variables
