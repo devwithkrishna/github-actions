@@ -9,7 +9,7 @@ def get_branch_or_tag_name():
 
 
 def get_pull_request_number(ref_name):
-  match = re.match(r'^refs/pull/(\d+)/merge$', ref_name)
+  match = re.match(r'^(\d+)/merge$', ref_name)
   if match:
     return int(match.group(1))
   return None
