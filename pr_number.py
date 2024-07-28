@@ -9,6 +9,8 @@ def get_branch_or_tag_name():
   print(f'Github event name {github_event_name}')
   github_ref = os.getenv('GITHUB_REF')
   print(f'Github ref {github_ref}')
+  github_event_number = os.environ.get('GITHUB_EVENT_NUMBER')
+  print(f'Github event no {github_event_number}')
   github_ref_name = os.environ.get('GITHUB_REF_NAME')
   print(f'Github ref name {github_ref_name}')
   github_ref = os.getenv('GITHUB_REF')	
