@@ -1,0 +1,21 @@
+name: Get Pull Request Details
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  get_details:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies (optional)
+      run: pip install requests python-dotenv # Install required libraries (if not pre-installed)
+
+    - name: Run Python script
+      #   env:
+      # - name: Load environment variables
+      # run: echo "Loaded environment variables"
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Access token with repo:pull_request scope
+      #     GITHUB_REPOSITORY: ${{ github.repository }}
+      run: python pr_number.py
