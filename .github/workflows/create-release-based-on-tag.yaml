@@ -5,7 +5,7 @@ on:
     - closed
     branches:
     - main
-run-name: creating release - PR Number ${{ github.event.number }}
+run-name: creating release - ${{ github.event}} PR Number ${{ github.event.number }}
 jobs:
   create-release-based-on-label:
     # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#running-your-pull_request-workflow-when-a-pull-request-merges
