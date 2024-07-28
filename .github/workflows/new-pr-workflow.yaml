@@ -1,4 +1,4 @@
-name: Get Pull Request Details
+name: New Pull Request Details
 
 on:
   pull_request:
