@@ -14,10 +14,10 @@ jobs:
     - name: Save PR number
       env:
        PR_NUMBER: ${{ github.event.number }}
-       run: |
-          mkdir -p ./pr
-          echo $PR_NUMBER 
-          echo ${{ github.event.number }}
+      run: |
+        mkdir -p ./pr
+        echo $PR_NUMBER 
+        echo ${{ github.event.number }}
           
     - name: Run Python script
       #   env:
