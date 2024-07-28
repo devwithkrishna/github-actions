@@ -5,11 +5,20 @@ import json
 from dotenv import load_dotenv
 
 def get_branch_or_tag_name():
+  github_event_name = os.getenv('GITHUB_EVENT_NAME')
+  print(f'Github event name {github_event_name}')
+  github_ref = os.getenv('GITHUB_REF')
+  print(f'Github ref {github_ref}')
+  github_event_number = os.environ.get('GITHUB_EVENT_NUMBER')
+  print(f'Github event no {github_event_number}')
+  github_ref_name = os.environ.get('GITHUB_REF_NAME')
+  print(f'Github ref name {github_ref_name}')
+  github_ref = os.getenv('GITHUB_REF')	
   return os.environ.get('GITHUB_REF_NAME', None)
 
 
 def get_pull_request_number(ref_name):
-  match = re.match(r'^refs/pull/(\d+)/merge$', ref_name)
+  match = re.match(r'^(\d+)/merge$', ref_name)
   if match:
     return int(match.group(1))
   return None
@@ -95,13 +104,13 @@ def main():
 	branch_or_tag = get_branch_or_tag_name()
 	if branch_or_tag:
 		print(f"Current branch or tag: {branch_or_tag}")
+		pull_request_number = get_pull_request_number(branch_or_tag)
+		print(f"Pull Request Number: {pull_request_number}")
+
 	# Do something with the branch or tag name
 	else:
 		print("Branch or tag name not available")
-	# Example usage:
-	pull_request_number = get_pull_request_number(branch_or_tag)
-	if pull_request_number:
-		print(f"Pull Request Number: {pull_request_number}")
+	
 
 
 
