@@ -35,6 +35,6 @@ jobs:
     - name: slack test
       uses: devwithkrishna/send-notifications-to-slack-from-github@feature/v1
       with:
-        channel_id: ${{ inputs.channel_id }}}
+        channel_id: ${{ inputs.channel_id }}
         bot_name: ${{ inputs.bot_name }}
         file_name: ${{ inputs.file_name }}
