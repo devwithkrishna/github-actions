@@ -31,6 +31,8 @@ jobs:
       run: |
         echo "This is test 1 actions repo" > a.txt
         echo "this is verification from slack action. All good confirmed" > b.txt
+        ls -la
+        sleep 10
  
     - name: slack test
       uses: devwithkrishna/send-notifications-to-slack-from-github@feature/v1
