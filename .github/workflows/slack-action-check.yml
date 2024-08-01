@@ -1,1 +1,40 @@
-name
+name: slack action check
+on:
+  workflow_dispatch:
+    inputs:
+      channel_id:
+        default: 'C07EVSM8EUS'
+        type: string
+      bot_name:
+        default: 'alerts-bot'
+        type: string
+      file_name:
+        default: 'a.txt, b.txt'
+        type: string
+jobs:
+  slack-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Token generator
+      uses: githubofkrishnadhas/github-access-using-githubapp@v2
+      id: token-generation
+      with:
+        github_app_id: ${{ secrets.TOKEN_GENERATOR_APPID }}
+        github_app_private_key: ${{ secrets.TOKEN_GENERATOR_PRIVATE_KEY }}
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ steps.token-generation.outputs.token }}
+
+    - name: create files
+      run: |
+        echo "This is test 1 actions repo" > a.txt
+        echo "this is verification from slack action. All good confirmed" > b.txt
+ 
+    - name: slack test
+      uses: devwithkrishna/send-notifications-to-slack-from-github@v1.0.0
+      with:
+        channel_id: ${{ inputs.channel_id }}}
+        bot_name: ${{ inputs.bot_name }}
+        file_name: ${{ inputs.file_name }}
