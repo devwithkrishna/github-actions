@@ -33,7 +33,7 @@ jobs:
         echo "this is verification from slack action. All good confirmed" > b.txt
  
     - name: slack test
-      uses: devwithkrishna/send-notifications-to-slack-from-github@v1.0.0
+      uses: devwithkrishna/send-notifications-to-slack-from-github@feature/v1
       with:
         channel_id: ${{ inputs.channel_id }}}
         bot_name: ${{ inputs.bot_name }}
