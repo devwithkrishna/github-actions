@@ -30,12 +30,13 @@ jobs:
     - name: create files
       run: |
         echo "This is test 1 actions repo" > a.txt
+        echo "I am awesome.txt. All good confirmed" > bb.txt
         echo "this is verification from slack action. All good confirmed" > b.txt
         ls -la
         sleep 10
  
     - name: slack test
-      uses: devwithkrishna/send-notifications-to-slack-from-github@feature/v1
+      uses: devwithkrishna/send-notifications-to-slack-from-github@main
       env: 
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
       with:
