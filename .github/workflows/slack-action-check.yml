@@ -36,6 +36,8 @@ jobs:
  
     - name: slack test
       uses: devwithkrishna/send-notifications-to-slack-from-github@feature/v1
+      env: 
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
       with:
         channel_id: ${{ inputs.channel_id }}
         bot_name: ${{ inputs.bot_name }}
