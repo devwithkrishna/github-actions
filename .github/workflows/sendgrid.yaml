@@ -1,0 +1,47 @@
+name: send-email
+on:
+  workflow_dispatch:
+    
+jobs:
+  send-email:
+    # runs-on: ubuntu-latest
+
+    # steps:
+      # - uses: githubofkrishnadhas/github-access-using-githubapp@v2
+      #   id: token-generation
+      #   with:
+      #     github_app_id: ${{ secrets.TOKEN_GENERATOR_APPID }}
+      #     github_app_private_key: ${{ secrets.TOKEN_GENERATOR_PRIVATE_KEY }}
+
+      # - name: Checkout Repository
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: 'devwithkrishna/sendgrid-docker-image'
+      #     token: ${{ steps.token-generation.outputs.token }}
+      #     fetch-depth: 1
+
+      # - name: set up python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: '3.11'
+
+      # - name: package installations
+      #   run: |
+      #     pip install poetry
+      #     poetry -v install --no-ansi --no-interaction --only main
+
+      # - name: run python program
+      #   env:
+      #     SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      #   run: |
+      #     poetry run python3 sendgrid_email.py --subject "${{ inputs.subject }}" --recepient "${{ inputs.recepient }}" --email_body "${{ inputs.email_body }}" --cced "${{ inputs.cced }}"
+      uses: devwithkrishna/sendgrid-docker-image/.github/workflows/send_email.yaml@main
+      secrets: inherit
+      with:
+        subject: "shdbadbsadh"
+        recepient: "krishnadhasnk1997@gmail.com"
+        email_body: "awdsadsd"
+        cced: "krishnadhasnk@gmail.com"
+        
+      # - name: program execution completed
+      #   run: echo "program execution completed"
