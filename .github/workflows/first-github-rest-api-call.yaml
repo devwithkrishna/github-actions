@@ -17,6 +17,6 @@ jobs:
           echo "${{ github.ref }} branch"
       - name: branch names
         run: 
-          echo "${{ github.ref.name }} branch"
+          echo "$GITHUB_REF_TYPE branch"
 
     
