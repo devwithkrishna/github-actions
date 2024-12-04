@@ -41,7 +41,7 @@ jobs:
         subject: "shdbadbsadh"
         recepient: "krishnadhasnk1997@gmail.com"
         email_body: "awdsadsd"
-        cced: "krishnadhasnk@gmail.com"
+        cced: ""
         
       # - name: program execution completed
       #   run: echo "program execution completed"
